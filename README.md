@@ -8,6 +8,7 @@ flutter_dong_scan是一个可以定做UI的二维码扫描库.
 参考库如下所示。安卓部分是基于 zxing-android-embedded 这个库，iOS是参考 ZFScan 改造的。
 
 [Android部分：zxing-android-embedded](https://github.com/journeyapps/zxing-android-embedded)
+
 [iOS部分：ZFScan](https://github.com/Zirkfied/ZFScan)
 
 
@@ -21,8 +22,20 @@ flutter_dong_scan是一个可以定做UI的二维码扫描库.
 ```
 
 dependencies:
-  flutter_dong_scan: ^1.0.0
+  flutter_dong_scan: ^1.0.1
 
+```
+
+同时,我们需要把项目中build.gradle的minSdkVersion设置为19.
+
+```
+android {
+    ...
+    defaultConfig {
+        minSdkVersion 19
+        ...
+    }
+}
 ```
 
 然后我们需要在Android的 **AndroidManifest.xml** 和 iOS 的 **info.plist** 添加权限请求， 具体如下所示。
