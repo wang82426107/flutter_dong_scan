@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.journeyapps.barcodescanner.BarcodeView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/zxing_barcode_surface"
+        />
+
+    <com.dong.scan.SDScanFinderView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/zxing_viewfinder_view"
+        />
+
+    <TextView
+        android:id="@+id/zxing_status_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:background="@color/zxing_transparent"
+        android:text="@string/zxing_msg_default_status"
+        android:textColor="@color/zxing_status_text"
+        />
+
+    <TextView
+        android:id="@+id/scan_view_title"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@color/zxing_transparent"
+        android:gravity="center"
+        android:text="扫一扫"
+        android:textSize="18sp"
+        android:textColor="@color/zxing_status_text"
+        />
+
+    <ImageButton
+        android:id="@+id/scan_exit_button"
+        android:background="@color/zxing_transparent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:scaleX="0.6"
+        android:scaleY="0.6"
+        android:scaleType="fitXY"
+        android:src="@drawable/sd_scan_exit_icon"
+        />
+
+
+</FrameLayout>
