@@ -22,7 +22,7 @@ flutter_dong_scan是一个可以定做UI的二维码扫描库.
 ```
 
 dependencies:
-  flutter_dong_scan: ^1.0.1
+  flutter_dong_scan: ^1.0.6
 
 ```
 
@@ -37,6 +37,13 @@ android {
     }
 }
 ```
+
+对于iOS部分，由于插件本身有图片资源，所以我们需要改动下我们的 **build System**。
+
+具体操作是 打开Xcode,从菜单栏中找到  **File → Workspace Settings** ,然后打开.
+
+然后我们需要把 **build System** 为 **Legacy Build System**。
+
 
 然后我们需要在Android的 **AndroidManifest.xml** 和 iOS 的 **info.plist** 添加权限请求， 具体如下所示。
 
@@ -97,3 +104,5 @@ import 'package:flutter_dong_scan/scan.dart';
       });
       scan.startScan(config: scanConfig);
 ```
+
+具体可看博客[SDScan详解博客](https://www.jianshu.com/p/4ec149ad560a)
