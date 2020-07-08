@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_dong_scan'
-  s.version          = '0.0.1'
+  s.version          = '0.0.4'
   s.summary          = 'A new Flutter plugin.'
   s.description      = <<-DESC
 A new Flutter plugin.
