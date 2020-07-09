@@ -22,7 +22,7 @@ flutter_dong_scan是一个可以定做UI的二维码扫描库.
 ```
 
 dependencies:
-  flutter_dong_scan: ^1.0.6
+  flutter_dong_scan: ^最新版本
 
 ```
 

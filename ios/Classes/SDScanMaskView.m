@@ -86,9 +86,9 @@
         _exitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, StatusHeight, NavigationBarHeight, NavigationBarHeight)];
         [_exitButton addTarget:self action:@selector(exitButtonAction) forControlEvents:UIControlEventTouchUpInside];
         if (_config.returnImageType == ReturnImageTypeExit) {
-            [_exitButton setImage:[UIImage imageNamed:@"sd_scan_exit_icon"] forState:UIControlStateNormal];
+            [_exitButton setImage:[SDScanMaskView getBundleImageName:@"sd_scan_exit_icon@2x"] forState:UIControlStateNormal];
         } else {
-            [_exitButton setImage:[UIImage imageNamed:@"sd_scan_cancle_icon"] forState:UIControlStateNormal];
+            [_exitButton setImage:[SDScanMaskView getBundleImageName:@"sd_scan_cancle_icon@2x"] forState:UIControlStateNormal];
         }
     }
     return _exitButton;
@@ -109,7 +109,7 @@
 - (UIImageView *)scanLineImageView {
     
     if (_scanLineImageView == nil) {
-        UIImage *scanLineImage = [[UIImage imageNamed:@"sd_scan_line_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *scanLineImage = [[SDScanMaskView getBundleImageName:@"sd_scan_line_icon@2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         _scanLineImageView = [[UIImageView alloc] initWithImage:scanLineImage];
         _scanLineImageView.frame = CGRectMake(self.centerX - _config.maskRatio * scanLineImage.size.width/2.0, self.centerY - _config.maskRatio * self.width/2.0, scanLineImage.size.width, scanLineImage.size.height);
         _scanLineImageView.tintColor = [UIColor hexStringToColor:_config.titeColor];
@@ -120,7 +120,7 @@
 - (UIImageView *)topLeftImageView {
     
     if (_topLeftImageView == nil) {
-        UIImage *topLeftImage = [[UIImage imageNamed:@"sd_scan_top_left_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *topLeftImage = [[SDScanMaskView getBundleImageName:@"sd_scan_top_left_icon@2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         _topLeftImageView = [[UIImageView alloc] initWithImage:topLeftImage];
         _topLeftImageView.frame = CGRectMake(self.centerX - _config.maskRatio * self.width/2.0, self.centerY - _config.maskRatio * self.width/2.0, topLeftImage.size.width, topLeftImage.size.height);
         _topLeftImageView.tintColor = [UIColor hexStringToColor:_config.titeColor];
@@ -131,7 +131,7 @@
 - (UIImageView *)topRightImageView {
     
     if (_topRightImageView == nil) {
-        UIImage *topRightImage = [[UIImage imageNamed:@"sd_scan_top_right_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *topRightImage = [[SDScanMaskView getBundleImageName:@"sd_scan_top_right_icon@2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         _topRightImageView = [[UIImageView alloc] initWithImage:topRightImage];
         _topRightImageView.frame = CGRectMake(self.centerX + _config.maskRatio * self.width/2.0 - topRightImage.size.width, self.centerY - _config.maskRatio * self.width/2.0, topRightImage.size.width, topRightImage.size.height);
         _topRightImageView.tintColor = [UIColor hexStringToColor:_config.titeColor];
@@ -142,7 +142,7 @@
 - (UIImageView *)bottomLeftImageView {
     
     if (_bottomLeftImageView == nil) {
-        UIImage *bottomLeftImage = [[UIImage imageNamed:@"sd_scan_bottom_left_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *bottomLeftImage = [[SDScanMaskView getBundleImageName:@"sd_scan_bottom_left_icon@2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         
         _bottomLeftImageView = [[UIImageView alloc] initWithImage:bottomLeftImage];
         _bottomLeftImageView.frame = CGRectMake(self.centerX - _config.maskRatio * self.width/2.0, self.centerY + _config.maskRatio * self.width/2.0 - bottomLeftImage.size.height, bottomLeftImage.size.width, bottomLeftImage.size.height);
@@ -154,7 +154,7 @@
 - (UIImageView *)bottomRightImageView {
     
     if (_bottomRightImageView == nil) {
-        UIImage *bottomRightImage = [[UIImage imageNamed:@"sd_scan_bottom_right_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *bottomRightImage = [[SDScanMaskView getBundleImageName:@"sd_scan_bottom_right_icon@2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         _bottomRightImageView = [[UIImageView alloc] initWithImage:bottomRightImage];
         _bottomRightImageView.frame = CGRectMake(self.centerX + _config.maskRatio * self.width/2.0 - bottomRightImage.size.width, self.centerY + _config.maskRatio * self.width/2.0 - bottomRightImage.size.height, bottomRightImage.size.width, bottomRightImage.size.height);
         _bottomRightImageView.tintColor = [UIColor hexStringToColor:_config.titeColor];
@@ -203,6 +203,20 @@
     animation.fromValue = [NSValue valueWithCGPoint:CGPointMake(self.centerX, self.centerY - _config.maskRatio * self.width/2.0)];
     animation.toValue = [NSValue valueWithCGPoint:CGPointMake(self.centerX, self.centerY + _config.maskRatio * self.width/2.0)];
     [self.scanLineImageView.layer addAnimation:animation forKey:nil];
+}
+
++ (UIImage *)getBundleImageName:(NSString *)imageName {
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[SDScanMaskView class]];
+    NSURL *url = [bundle URLForResource:@"SDScanResource" withExtension:@"bundle"];
+    NSBundle *imageBundle = [NSBundle bundleWithURL:url];
+    if (imageBundle == nil) {
+        NSLog(@"获取包失败");
+    }
+    if ([UIImage imageWithContentsOfFile:[imageBundle pathForResource:imageName ofType:@"png"]] == nil) {
+        NSLog(@"获取资源失败");
+    }
+    return [UIImage imageWithContentsOfFile:[imageBundle pathForResource:imageName ofType:@"png"]];
 }
 
 @end
