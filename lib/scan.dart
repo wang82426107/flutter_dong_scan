@@ -8,11 +8,11 @@ typedef ScanEventListener = dynamic Function(dynamic codeString);
 class SDScan {
 
 
-  StreamSubscription<dynamic> _eventSubscription;
+  StreamSubscription<dynamic>? _eventSubscription;
 
   static const MethodChannel _channel = const MethodChannel('scan');
 
-  ScanEventListener scanEventListener;
+  ScanEventListener? scanEventListener;
 
   SDScan() {
     initEvent();
@@ -34,12 +34,12 @@ class SDScan {
 
   void scanErrorListener(Object object) {}
 
-  Future<String> startScan({ScanConfig config}) async {
-    ScanConfig scanConfig;
+  Future<String?> startScan({ScanConfig? config}) async {
+    late ScanConfig scanConfig;
     if (config != null) {
       scanConfig = config;
     }
-    final String codeString = await _channel.invokeMethod('startScan', <String, dynamic>{
+    final String? codeString = await _channel.invokeMethod('startScan', <String, dynamic>{
       "maskColorAlpha": scanConfig.maskColorAlpha,
       "maskRatio": scanConfig.maskRatio,
       "returnStyle": scanConfig.returnStyle,
