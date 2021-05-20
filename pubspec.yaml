@@ -5,7 +5,7 @@ author: 神经骚栋 <676758285@qq.com>
 homepage: https://github.com/wang82426107/flutter_dong_scan.git
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
